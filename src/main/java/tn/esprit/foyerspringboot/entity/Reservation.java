@@ -25,9 +25,9 @@ public class Reservation {
    @JoinColumn(name = "chambre_id")
     private Chambre chambre;
 
-    @ManyToOne
-    @JoinColumn(name = "etudiant_id")
-    private Etudiant etudiant;
+   // @ManyToOne
+   // @JoinColumn(name = "etudiant_id")
+   // private Etudiant etudiant;
     // Getters et Setters
 
 }

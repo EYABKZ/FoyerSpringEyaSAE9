@@ -16,8 +16,8 @@ public class Etudiant {
     private String ecole;
     private DateFormat dateNaissance;
 
- @OneToMany(mappedBy = "etudiant")
- private List<Reservation> reservations;
+// @OneToMany(mappedBy = "etudiant")
+// private List<Reservation> reservations;
 
 
     // Getters et Setters
