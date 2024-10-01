@@ -22,12 +22,9 @@ public class Reservation {
     private boolean estValide;
 
     @ManyToOne
-   @JoinColumn(name = "chambre_id")
-    private Chambre chambre;
+    private Chambre chambres;
 
-   // @ManyToOne
-   // @JoinColumn(name = "etudiant_id")
-   // private Etudiant etudiant;
-    // Getters et Setters
-
+@ManyToMany
+List<Reservation>reservations;
 }
+

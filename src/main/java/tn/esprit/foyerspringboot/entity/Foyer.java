@@ -23,8 +23,11 @@ public class Foyer {
     private String nomFoyer;
     private Long capaciteFoyer;
 
-   @OneToMany (mappedBy = "foyer")
-   private List <Bloc>blocs;
+   @OneToMany
+   List<Bloc>b;
+
+   @OneToOne (mappedBy = "foyerU")
+    private Foyer foyerU;
 
 
 

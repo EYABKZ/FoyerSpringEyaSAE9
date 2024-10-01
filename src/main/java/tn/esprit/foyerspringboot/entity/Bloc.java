@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.nio.MappedByteBuffer;
 import java.util.List;
 @Entity
 @Getter
@@ -22,10 +23,10 @@ public class Bloc {
     private Long capaciteBloc;
 
     @ManyToOne
-  @JoinColumn (name = "foyer_id")
-    private Foyer foyer;
+    private Bloc b;
+    @OneToMany
+    List<Chambre>chambres;
 
- @OneToMany(mappedBy = "bloc")
- private List<Chambre> chambres;
+
 
 }

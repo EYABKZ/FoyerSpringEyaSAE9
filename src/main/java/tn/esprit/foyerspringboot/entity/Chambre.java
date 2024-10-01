@@ -21,9 +21,9 @@ public class Chambre {
     @Enumerated(EnumType.STRING)
     private TypeChambre typeC;
    @ManyToOne
-    @JoinColumn (name = "bloc_id")
     private Bloc bloc;
-@OneToMany (mappedBy = "chambre")
+
+@OneToMany
     public List<Reservation> reservations;
     // Getters et Setters
 }
