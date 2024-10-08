@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,13 +20,11 @@ import java.util.List;
 public class Reservation {
 @Id
     private String idReservation;
-    private DateFormat anneeUniversitaire;
+    private Date anneeUniversitaire;
     private boolean estValide;
 
-    @ManyToOne
-    private Chambre chambres;
 
-@ManyToMany
-List<Reservation>reservations;
+ @ManyToMany
+ List<Etudiant> e;
 }
 

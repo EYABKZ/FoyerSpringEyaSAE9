@@ -15,6 +15,7 @@ public class Universite {
     @OneToOne
     private Foyer foyerU;
 
+
     // Getters et Setters
 
 }

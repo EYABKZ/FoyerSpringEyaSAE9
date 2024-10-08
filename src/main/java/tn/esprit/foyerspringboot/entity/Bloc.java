@@ -23,7 +23,7 @@ public class Bloc {
     private Long capaciteBloc;
 
     @ManyToOne
-    private Bloc b;
+    private Foyer foyer;
     @OneToMany
     List<Chambre>chambres;
 

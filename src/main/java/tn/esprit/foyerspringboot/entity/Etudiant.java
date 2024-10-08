@@ -16,7 +16,7 @@ public class Etudiant {
     private String ecole;
     private DateFormat dateNaissance;
 
-@ManyToMany (mappedBy = "reservations")
+@ManyToMany (mappedBy = "e")
 List<Reservation> reservations;
 
     // Getters et Setters

@@ -24,10 +24,10 @@ public class Foyer {
     private Long capaciteFoyer;
 
    @OneToMany
-   List<Bloc>b;
+   List<Bloc>blocs;
 
    @OneToOne (mappedBy = "foyerU")
-    private Foyer foyerU;
+    private Universite universite;
 
 
 
