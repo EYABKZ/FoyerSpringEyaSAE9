@@ -8,6 +8,7 @@ public interface IFoyerService {
     Foyer addFoyer(Foyer foyer);
     void deleteFoyer(long idFoyer);
     List<Foyer> getAllFoyers();
-    void updateFoyer(Foyer foyer);
+    Foyer updateFoyer(Foyer foyer);
 
+    Foyer findById(Long idFoyer);
 }

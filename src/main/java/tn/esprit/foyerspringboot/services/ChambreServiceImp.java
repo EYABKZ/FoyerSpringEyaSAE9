@@ -34,4 +34,9 @@ public class ChambreServiceImp implements IChambreService {
         return chambreRepository.save(chambre);
 
     }
+
+    @Override
+    public Chambre findById(Long idChambre) {
+        return null;
+    }
 }

@@ -11,4 +11,5 @@ public interface IUniversiteService {
     List<Universite> getAllUniversite();
 
 
+    Universite findById(Long idUniversite);
 }
