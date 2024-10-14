@@ -22,7 +22,7 @@ public class BlocController {
         return listBlocs;
     }
 
-    // http://localhost:8089/tpfoyer/bloc/add-bloc
+    // http://localhost:8089/foyer/bloc/add-bloc
     @PostMapping("/add-bloc")
     public ResponseEntity<Bloc> addBloc(@RequestBody Bloc b) {
         Bloc bloc = blocService.addBloc(b);

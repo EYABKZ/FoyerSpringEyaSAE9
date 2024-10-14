@@ -13,8 +13,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class Bloc {
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

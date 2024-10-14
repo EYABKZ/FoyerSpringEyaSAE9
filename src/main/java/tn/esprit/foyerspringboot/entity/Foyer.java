@@ -1,6 +1,4 @@
 package tn.esprit.foyerspringboot.entity;
-
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,9 +1,6 @@
 package tn.esprit.foyerspringboot.entity;
-
-
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.nio.MappedByteBuffer;
 import java.util.List;
 

@@ -8,7 +8,6 @@ import tn.esprit.foyerspringboot.entity.Universite;
 import tn.esprit.foyerspringboot.services.IUniversiteService;
 
 import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/universite")

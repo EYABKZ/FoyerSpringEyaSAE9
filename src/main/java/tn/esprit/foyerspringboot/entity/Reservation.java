@@ -25,6 +25,5 @@ public class Reservation {
 
 
  @ManyToMany
- List<Etudiant> e;
-}
+ List<Etudiant>e;}
 
