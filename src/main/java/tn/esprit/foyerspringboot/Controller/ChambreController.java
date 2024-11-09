@@ -1,55 +1,84 @@
 package tn.esprit.foyerspringboot.Controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.foyerspringboot.entity.TypeChambre;
+import tn.esprit.foyerspringboot.entity.Bloc;
 import tn.esprit.foyerspringboot.entity.Chambre;
+import tn.esprit.foyerspringboot.repositories.ChambreRepository;
+import tn.esprit.foyerspringboot.services.ChambreServiceImp;
 import tn.esprit.foyerspringboot.services.IChambreService;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/chambre")
+@AllArgsConstructor
 public class ChambreController {
 
-    private final IChambreService chambreService;
+    private final ChambreRepository chambreRepository;
+    private final ChambreServiceImp chambreServiceImp;
+    private IChambreService chambreService;
 
-    // http://localhost:8089/foyer/chambre/retrieve-all-chambres
-    @GetMapping("/retrieve-all-chambres")
-    public List<Chambre> getChambres() {
-        List<Chambre> listChambres = chambreService.getAllChambre();
-        return listChambres;
-    }
 
-    // http://localhost:8089/foyer/chambre/add-chambre
-    @PostMapping("/add-chambre")
-    public ResponseEntity<Chambre> addChambre(@RequestBody Chambre c) {
-        Chambre chambre = chambreService.addChambre(c);
-        return new ResponseEntity<>(chambre, HttpStatus.CREATED);
-    }
-
-    // http://localhost:8089/foyer/chambre/remove-chambre/{chambre-id}
-    @DeleteMapping("/remove-chambre/{chambre-id}")
-    public void removeChambre(@PathVariable("chambre-id") Long chId) {
-        chambreService.deleteChambre(chId);
-    }
-
-    // http://localhost:8089/foyer/chambre/modify-chambre
-    @PutMapping("/modify-chambre")
-    public Chambre modifyChambre(@RequestBody Chambre c) {
-        Chambre chambre = chambreService.updateChambre(c);
-        return chambre;
+    @Operation(summary = "Add a new Chambre", description = "This endpoint adds a new chambre to the system.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Chambre added successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid Chambre data provided")
+    })
+    @PostMapping("/addChambre")
+    public Chambre addChambre(@RequestBody Chambre chambre) {
+        return chambreService.addChambre(chambre);
     }
 
 
-    // http://localhost:8089/tpfoyer/chambre/retrieve-chambre/8
-    @GetMapping("/retrieve-chambre/{chambre-id}")
-    public Chambre retrieveChambre(@PathVariable("chambre-id") Long idChambre) {
-        Chambre chambre = chambreService.findById(idChambre);
-        return chambre;
+    @GetMapping("/findAll")
+    public List<Chambre> getAllChambres() {
+        return chambreService.getAllChambre();
+    }
+
+    @GetMapping("/find/{id}")
+    public Chambre getChambreById(@PathVariable Long id) {
+        return chambreService.getChambreById(id);
+    }
+
+    @PutMapping("/updateChambre")
+    public Chambre updateChambre(@RequestBody Chambre chambre) {
+        return chambreService.updateChambre(chambre);
     }
 
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteChambre(@PathVariable Long id) {
+        chambreService.deleteChambre(id);
+    }
+
+    @GetMapping("/getAllChambreByTypeC")
+    List<Chambre> findAllByTypeC(TypeChambre tc) {
+        return chambreService.findAllByTypeC(tc);
+    }
+
+
+    @GetMapping("/retrieve-chambreByNumero/{chambre-id}")
+    Chambre findByNumeroChambre(@PathVariable("chambre-id") Long numeroChambre) {
+        return chambreService.findByNumeroChambre(numeroChambre);
+    }
+
+    @GetMapping("/getChambreByBlocAndTypeC")
+    List<Chambre> getChambreByBlocAndAndTypeC(Bloc b, TypeChambre typeC) {
+        return chambreService.getChambreByBlocAndAndTypeC(b, typeC);
+    }
+
+    @GetMapping("/findByBlocNom")
+    public List<Chambre> findByBlocListNomBloc(@RequestParam String nomBloc) {
+        return chambreService.findByBlocListNomBloc(nomBloc);
+    }
+
+    @GetMapping("/countByCapaciteGreaterThan")
+    public Integer countByBlocListCapaciteBlocGreaterThan(@RequestParam("capacite") Long capacite) {
+        return chambreService.countByBlocListCapaciteBlocGreaterThan(capacite);
+    }
 }

@@ -19,7 +19,8 @@ public class Chambre {
     private TypeChambre typeC;
    @ManyToOne
     private Bloc bloc;
-
+@OneToMany
+private List<Bloc> blocList;
 @OneToMany
     public List<Reservation> reservations;
     // Getters et Setters

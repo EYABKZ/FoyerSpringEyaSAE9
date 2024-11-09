@@ -14,7 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bloc {
-   @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBloc;
     private String nomBloc;
@@ -23,7 +24,7 @@ public class Bloc {
     @ManyToOne
     private Foyer foyer;
     @OneToMany
-    List<Chambre>chambres;
+    private List<Chambre> chambres;
 
 
 
