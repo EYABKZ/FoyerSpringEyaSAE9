@@ -2,9 +2,10 @@ package tn.esprit.foyerspringboot.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.foyerspringboot.entity.Foyer;
 import tn.esprit.foyerspringboot.entity.Universite;
+import tn.esprit.foyerspringboot.repositories.FoyerRepository;
 import tn.esprit.foyerspringboot.repositories.UniversiteRepository;
-
 import java.util.List;
 
 @Service
@@ -43,6 +44,22 @@ public class UniversiteServiceImp implements IUniversiteService {
 
     @Override
     public Universite findById(Long idUniversite) {
-        return universiteRepository.findById(idUniversite).orElse(null);
+        return null;
     }
-}
+
+
+    public Universite affecterFoyerAUniversite (long idFoyer, String nomUniversite) {
+        Universite universite = universiteRepository.findByNomUniversite(nomUniversite);
+        if (universite == null) {
+            throw new RuntimeException("Université avec le nom " + nomUniversite + " non trouvée");
+        }
+
+        // Recherche du foyer par ID
+        Foyer foyer = FoyerRepository.findById(idFoyer).get();
+        // Affectation du foyer à l'université
+        universite.setFoyerU(foyer);
+        // Sauvegarde de l'université avec le foyer affecté
+        return universiteRepository.save(universite);
+    }
+    }
+
