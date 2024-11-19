@@ -26,5 +26,6 @@ import java.util.List;
        List<Chambre> findByBlocListNomBloc(String nomBloc);
 
        Integer countByBlocListCapaciteBlocGreaterThan(Long capaciteLong);
-
+       public Chambre affecterChambreABloc (int num, Integer idBloc);
+       public void desaffecterChambreDeBloc (Long num, Integer idBloc);
    }

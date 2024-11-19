@@ -6,12 +6,16 @@ import tn.esprit.foyerspringboot.entity.Foyer;
 import tn.esprit.foyerspringboot.entity.Universite;
 import tn.esprit.foyerspringboot.repositories.FoyerRepository;
 import tn.esprit.foyerspringboot.repositories.UniversiteRepository;
+
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class UniversiteServiceImp implements IUniversiteService {
-    UniversiteRepository universiteRepository;
+
+    private final UniversiteRepository universiteRepository;
+    private final FoyerRepository foyerRepository;
+    private Object foyer;
 
     @Override
     public Universite addUniversite(Universite universite) {
@@ -51,11 +55,10 @@ public class UniversiteServiceImp implements IUniversiteService {
     public Universite affecterFoyerAUniversite (long idFoyer, String nomUniversite) {
         Universite universite = universiteRepository.findByNomUniversite(nomUniversite);
         if (universite == null) {
-            throw new RuntimeException("Université avec le nom " + nomUniversite + " non trouvée");
+            throw new RuntimeException("Université " + nomUniversite + " non trouvée");
         }
-
         // Recherche du foyer par ID
-        Foyer foyer = FoyerRepository.findById(idFoyer).get();
+        Foyer foyer = foyerRepository.findById(idFoyer).orElseThrow(() -> new RuntimeException("Foyer avec l'ID " + idFoyer + " non trouvé"));
         // Affectation du foyer à l'université
         universite.setFoyerU(foyer);
         // Sauvegarde de l'université avec le foyer affecté

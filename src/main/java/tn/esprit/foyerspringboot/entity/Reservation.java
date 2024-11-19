@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.text.DateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -25,5 +26,9 @@ public class Reservation {
 
 
  @ManyToMany
- List<Etudiant>e;}
+ List<Etudiant>e;
+
+    public Collection<Object> getEtudiants() {
+    }
+}
 

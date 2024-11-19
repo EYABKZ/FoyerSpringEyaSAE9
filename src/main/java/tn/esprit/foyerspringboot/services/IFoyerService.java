@@ -11,4 +11,5 @@ public interface IFoyerService {
     Foyer updateFoyer(Foyer foyer);
 
     Foyer findById(Long idFoyer);
+    public Foyer ajouterFoyerAvecBlocsAssociés (Foyer foyer);
 }

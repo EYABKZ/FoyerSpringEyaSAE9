@@ -36,4 +36,13 @@ public class FoyerServiceImp implements IFoyerService {
     public Foyer findById(Long idFoyer) {
         return foyerRepository.findById(idFoyer).orElse(null);
     }
+    public Foyer ajouterFoyerAvecBlocsAssociés (Foyer foyer)
+    {
+
+        if (foyer.getBlocs() != null && !foyer.getBlocs().isEmpty())
+        {
+
+        }
+        return foyerRepository.save(foyer);
+    }
 }

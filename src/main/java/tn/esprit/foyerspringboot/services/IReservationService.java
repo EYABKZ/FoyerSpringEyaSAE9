@@ -11,4 +11,5 @@ public interface IReservationService {
     void deleteReservation(String idReservation);
 
     Reservation findById(String idReservation);
+    public Reservation ajouterReservationAvecEtudiants ( Reservation reservation);
 }

@@ -2,6 +2,7 @@ package tn.esprit.foyerspringboot.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.foyerspringboot.entity.Etudiant;
 import tn.esprit.foyerspringboot.entity.Reservation;
 import tn.esprit.foyerspringboot.repositories.ReservationRepository;
 
@@ -48,4 +49,13 @@ public class ReservationServiceImp implements IReservationService {
     public Reservation findById(Long idReservation) {
         return reservationRepository.findById(idReservation).orElse(null);
     }
+    public Reservation ajouterReservationAvecEtudiants(Reservation reservation)
+    {
+        if (reservation.getEtudiants() != null && !reservation.getEtudiants().isEmpty())
+        {
+
+        }
+        return reservationRepository.save(reservation);
+    }
 }
+

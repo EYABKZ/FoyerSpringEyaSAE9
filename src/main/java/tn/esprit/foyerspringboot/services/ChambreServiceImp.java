@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.foyerspringboot.entity.Bloc;
 import tn.esprit.foyerspringboot.entity.Chambre;
 import tn.esprit.foyerspringboot.entity.TypeChambre;
+import tn.esprit.foyerspringboot.repositories.BlocRepository;
 import tn.esprit.foyerspringboot.repositories.ChambreRepository;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.List;
 
 public class ChambreServiceImp implements IChambreService {
     private final ChambreRepository chambreRepository;
+    private final BlocRepository blocRepository;
 
-    public ChambreServiceImp(ChambreRepository chambreRepository) {
+    public ChambreServiceImp(ChambreRepository chambreRepository, BlocRepository blocRepository) {
         this.chambreRepository = chambreRepository;
+        this.blocRepository = blocRepository;
     }
 
     @Override
@@ -72,7 +75,38 @@ public class ChambreServiceImp implements IChambreService {
     public Integer countByBlocListCapaciteBlocGreaterThan(Long capacite) {
         return chambreRepository.countByBlocList_CapaciteBlocGreaterThan(capacite);
     }
+
+    @Override
+    public Chambre affecterChambreABloc(int num, Integer idBloc) {
+        return null;
+    }
+
+    public Chambre affecterChambreABloc(Long num, Integer idBloc) {
+        Chambre chambre = chambreRepository.findById((long) num)
+                .orElseThrow(() -> new RuntimeException("Chambre non trouvée avec l'ID : " + num));
+        Bloc bloc = blocRepository.findById(Long.valueOf(idBloc))
+                .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID : " + idBloc));
+
+        chambre.setBloc(bloc);
+        return chambreRepository.save(chambre);
+    }
+    public void desaffecterChambreDeBloc (Long num, Integer idBloc)
+    {
+    Chambre chambre = chambreRepository.findById(num)
+            .orElseThrow(() -> new RuntimeException("Chambre non trouvée avec l'ID : " + num));
+    Bloc bloc = blocRepository.findById(Long.valueOf(idBloc))
+            .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID : " + idBloc));
+        if (chambre.getBloc() != null && chambre.getBloc().getIdBloc().equals(idBloc)) {
+        chambre.setBloc(null);
+        chambreRepository.save(chambre);
+    } else {
+        throw new RuntimeException("La chambre n'est pas associée au bloc avec l'ID : " + idBloc);
+    }
 }
+}
+
+
+
 
 
 
